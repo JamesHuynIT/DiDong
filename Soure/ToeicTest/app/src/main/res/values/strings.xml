@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Toeic</string>
+    <string name="dialog">Are you ready?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="intruction">"Luyện thi toeic" là ứng dụng bao gồm đầy đủ các phần, từ lý thuyết đến bài tập, rất chi tiết.
+        Số lượng câu hỏi đa dạng, phong phú và đầy đủ nhất hiện nay.Ngoài những bài test toeic. Phần mềm còn cung cấp những phụ trợ giúp bạn
+		có kết quả tốt nhất trong các kỳ thi toeic:
+    </string>
+
+    <string name="intruction_2">
+		+ Ngữ pháp trong thi toeic: Tổng hợp những bài ngữ pháp chọn lọc, các bài tập ngữ pha
+        ́p, cách tránh sai sót về ngữ pháp trong thi toeic
+    </string>
+
+    <string name="intruction_3">
+        + Các tip và kinh nghiệm trong làm bài thi toeic.
+    </string>
+
+    <string name="hdsd">Hướng dẫn sử dụng</string>
+    <string name="title_activity_thong_tin_bq">Bí quyết học Toeic</string>
+    <string name="action_settings">Setting</string>
+</resources>
