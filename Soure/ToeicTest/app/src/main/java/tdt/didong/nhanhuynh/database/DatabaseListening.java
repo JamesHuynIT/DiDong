@@ -64,7 +64,8 @@ public class DatabaseListening {
      * @return a List of bi quyet
      */
     public Bitmap getImage(){
-        String query = "SELECT HINHANH FROM CAUHOI WHERE CAUHOI.LOAICH='Listening' ORDER BY CAUHOI.MACH" ;
+        String query = "SELECT HINHANH FROM CAUHOI WHERE CAUHOI.LOAICH='Listening' " +
+                "AND CAUHOI.HINHANH IS  NOT NULL ORDER BY CAUHOI.MACH" ;
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()){
             byte[] imgByte = cursor.getBlob(0);
@@ -102,6 +103,18 @@ public class DatabaseListening {
         return list;
     }
 
+    public List<byte[]> getAmThanhListen() {
+        List<byte[]> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT AMTHANH FROM CAUHOI WHERE CAUHOI.LOAICH='Listening' ORDER BY CAUHOI.MACH", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getBlob(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
     public List<String> getDapAnListening() {
         List<String> list = new ArrayList<>();
             Cursor cursor = database.rawQuery("SELECT NOIDUNGDA FROM DAPAN, CAUHOI WHERE DAPAN.MACH=CAUHOI.MACH " +
@@ -109,6 +122,20 @@ public class DatabaseListening {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public List<String> getDapAnDungListening() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT MADA FROM DAPAN,CAUHOI WHERE DAPAN.DADUNG = 1 " +
+                "AND DAPAN.MACH=CAUHOI.MACH AND CAUHOI.LOAICH='Listening' ORDER BY DAPAN.MADA", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String da = cursor.getString(0);
+            list.add(String.valueOf(da.charAt(da.length() - 1)));
             cursor.moveToNext();
         }
         cursor.close();

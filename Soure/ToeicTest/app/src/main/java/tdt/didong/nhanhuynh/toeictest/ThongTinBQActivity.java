@@ -27,6 +27,7 @@ public class ThongTinBQActivity extends AppCompatActivity {
 
 
         textView = (TextView) findViewById(R.id.thongTin);
+        
         Intent callerIntent = getIntent();
         Bundle packageFromCaller = callerIntent.getBundleExtra("MyPackage");
         int position = packageFromCaller.getInt("position");

@@ -26,6 +26,13 @@
             android:textColor="#EEEEEE"
             android:textSize="20dp" />
 
+        <Button
+            android:id="@+id/nopBai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nộp bài"
+            android:layout_marginRight="150dp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -37,6 +44,29 @@
             android:id="@+id/hinhAnh"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="||"
+            android:id="@+id/btnPlay"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/imageView"
+            android:layout_alignStart="@+id/imageView" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_above="@+id/btnPlay" />
 
     </LinearLayout>
 

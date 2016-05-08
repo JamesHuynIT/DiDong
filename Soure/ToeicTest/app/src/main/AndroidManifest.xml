@@ -17,13 +17,20 @@
         </activity>
         <activity android:name=".LuyenThiReadingActivity" />
         <activity android:name=".LuyenThiListeningActivity" />
-        <activity android:name=".HuongDanActivity" />
         <activity android:name=".LuyenThiFullActivity" />
         <activity android:name=".BiQuyetActivity" />
         <activity android:name=".NguPhapActivity" />
         <activity
             android:name=".ThongTinBQActivity"
             android:label="@string/title_activity_thong_tin_bq"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HuongDanActivity"
+            android:label="@string/title_activity_huong_dan"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ThongTinNPActivity"
+            android:label="@string/title_activity_thong_tin_np"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -26,6 +26,19 @@
             android:textColor="#EEEEEE"
             android:textSize="20dp" />
 
+        <Button
+            android:id="@+id/nopBai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nộp bài"/>
+
+        <TextView
+            android:id="@+id/DapAnDung"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#FF0000"
+            android:textSize="20dp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -47,6 +60,7 @@
         android:orientation="vertical">
 
         <RadioGroup
+            android:id="@+id/groudDA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -102,11 +116,5 @@
             android:layout_marginLeft="160dp"
             android:src="@drawable/ic_next" />
     </LinearLayout>
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/spinner_title"/>
 
 </LinearLayout>

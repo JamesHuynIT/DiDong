@@ -86,4 +86,18 @@ import java.util.List;
         cursor.close();
         return list;
     }
+
+     public List<String> getDapAnDungReading() {
+         List<String> list = new ArrayList<>();
+         Cursor cursor = database.rawQuery("SELECT MADA FROM DAPAN,CAUHOI WHERE DAPAN.DADUNG = 1 " +
+                 "AND DAPAN.MACH=CAUHOI.MACH AND CAUHOI.LOAICH='Reading' ORDER BY DAPAN.MADA", null);
+         cursor.moveToFirst();
+         while (!cursor.isAfterLast()) {
+             String da = cursor.getString(0);
+             list.add(String.valueOf(da.charAt(da.length() - 1)));
+             cursor.moveToNext();
+         }
+         cursor.close();
+         return list;
+     }
 }
