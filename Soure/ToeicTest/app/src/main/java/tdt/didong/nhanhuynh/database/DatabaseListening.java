@@ -63,27 +63,28 @@ public class DatabaseListening {
      *
      * @return a List of bi quyet
      */
-    public Bitmap getImage(){
+    public ArrayList<Bitmap> getImagepart1(){
+        ArrayList<Bitmap> lstHinhAnh = new ArrayList<Bitmap>();
         String query = "SELECT HINHANH FROM CAUHOI WHERE CAUHOI.LOAICH='Listening' " +
-                "AND CAUHOI.HINHANH IS  NOT NULL ORDER BY CAUHOI.MACH" ;
+                "AND CAUHOI.HINHANH IS  NOT NULL AND CAUHOI.MAPHAN='Part 1' ORDER BY CAUHOI.MACH" ;
         Cursor cursor = database.rawQuery(query, null);
-        if (cursor.moveToFirst()){
+        cursor.moveToFirst();
+       do{
             byte[] imgByte = cursor.getBlob(0);
-            cursor.close();
-            ByteArrayInputStream imageStream = new ByteArrayInputStream(imgByte);
-            Bitmap theImage = BitmapFactory.decodeStream(imageStream);
-            return theImage;
-        }
+            Bitmap theImage = BitmapFactory.decodeByteArray(imgByte,0,imgByte.length);
+            lstHinhAnh.add(theImage);
+
+        } while(cursor.moveToNext());
         if (cursor != null && !cursor.isClosed()) {
             cursor.close();
         }
 
-        return null ;
+        return lstHinhAnh;
     }
 
-    public int getCountCHListen(){
+    public int getCountCHListenPart1(){
         int count = 0;
-        Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM CAUHOI WHERE CAUHOI.LOAICH='Listening'", null);
+        Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM CAUHOI WHERE CAUHOI.LOAICH='Listening' and CAUHOI.MAPHAN='Part 1'", null);
         if (cursor.moveToFirst()){
             count = cursor.getInt(0);
             cursor.close();
@@ -114,6 +115,17 @@ public class DatabaseListening {
         cursor.close();
         return list;
     }
+    public List<byte[]> getAmThanhListenpart2() {
+        List<byte[]> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT AMTHANH FROM CAUHOI WHERE CAUHOI.LOAICH='Listening' AND CAUHOI.MAPHAN='Part 2'  ORDER BY CAUHOI.MACH", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getBlob(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
 
     public List<String> getDapAnListening() {
         List<String> list = new ArrayList<>();
@@ -131,7 +143,21 @@ public class DatabaseListening {
     public List<String> getDapAnDungListening() {
         List<String> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT MADA FROM DAPAN,CAUHOI WHERE DAPAN.DADUNG = 1 " +
-                "AND DAPAN.MACH=CAUHOI.MACH AND CAUHOI.LOAICH='Listening' ORDER BY DAPAN.MADA", null);
+                "AND DAPAN.MACH=CAUHOI.MACH AND CAUHOI.LOAICH='Listening' AND CAUHOI.MAPHAN='Part 1' ORDER BY DAPAN.MADA", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String da = cursor.getString(0);
+            list.add(String.valueOf(da.charAt(da.length() - 1)));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public List<String> getDapAnDungListeningPart2() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT MADA FROM DAPAN,CAUHOI WHERE DAPAN.DADUNG = 1 " +
+                "AND DAPAN.MACH=CAUHOI.MACH AND CAUHOI.LOAICH='Listening' AND CAUHOI.MAPHAN='Part 2' ORDER BY DAPAN.MADA", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             String da = cursor.getString(0);

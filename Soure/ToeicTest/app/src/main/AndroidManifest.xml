@@ -15,11 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LuyenThiReadingActivity" />
-        <activity android:name=".LuyenThiListeningActivity" />
         <activity android:name=".LuyenThiFullActivity" />
         <activity android:name=".BiQuyetActivity" />
         <activity android:name=".NguPhapActivity" />
+        <activity android:name=".PartToeicActivity" />
+        <activity android:name=".Past1Activity" />
+        <activity android:name=".Past2Activity" />
+        <activity android:name=".Past3Activity" />
+        <activity android:name=".Past5Activity" />
         <activity
             android:name=".ThongTinBQActivity"
             android:label="@string/title_activity_thong_tin_bq"

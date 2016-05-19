@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="9"
+    tools:context=".Past2Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:paddingBottom="10sp">
+
+        <TextView
+            android:id="@+id/txtSoCau"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:text="Tổng câu: "
+            android:textColor="#EEEEEE"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/nopBai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nộp bài"/>
+
+        <TextView
+            android:gravity="center_vertical"
+            android:id="@+id/DapAnDung"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#FF0000"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="||"
+            android:id="@+id/btnPlay"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/imageView"
+            android:layout_alignStart="@+id/imageView" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_above="@+id/btnPlay" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/groudDAListen"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radA"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+
+                android:text="A" />
+
+            <RadioButton
+                android:id="@+id/radB"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="B" />
+
+            <RadioButton
+                android:id="@+id/radC"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="C" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:weightSum="5"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/ImgBtnPre"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/custome_button"
+            android:src="@drawable/arrow_leftbold"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="match_parent" />
+        <ImageButton
+            android:id="@+id/ImgBtnNext"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/custome_button"
+            android:src="@drawable/arrow_rightbold" />
+    </LinearLayout>
+
+</LinearLayout>

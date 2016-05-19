@@ -1,23 +1,28 @@
 package tdt.didong.nhanhuynh.toeictest;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import tdt.didong.nhanhuynh.database.DatabaseReading;
 
-public class LuyenThiReadingActivity extends AppCompatActivity {
-
+/**
+ * Created by HIEUHUYNH on 17/05/2016.
+ */
+public class Past5Activity extends AppCompatActivity {
     List<String> listDADanh;
     List<String> listDADung;
     boolean preview = false;
@@ -35,9 +40,12 @@ public class LuyenThiReadingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_luyen_thi_reading);
+        setContentView(R.layout.activity_part5);
 
         listDADanh = new ArrayList<>();
+        for(int i = 0; i < 10;i++){
+            listDADanh.add("E");
+        }
         listDADung = new ArrayList<>();
 
         imgNext = (ImageButton) findViewById(R.id.ImgBtnNext);
@@ -56,28 +64,33 @@ public class LuyenThiReadingActivity extends AppCompatActivity {
         radioGroup = (RadioGroup) findViewById(R.id.groudDA);
 
         LoadCH(i, k);
-
+        imgPrev.setVisibility(View.INVISIBLE);
         imgNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!preview) {
-                    imgPrev.setEnabled(true);
+                    imgPrev.setVisibility(View.VISIBLE);
                     if (i < socau) {
                         if (rad1.isChecked()) {
-                            listDADanh.add("A");
+                            listDADanh.set(i-1,"A");
                         } else if (rad2.isChecked()) {
-                            listDADanh.add("B");
+                            listDADanh.set(i-1,"B");
                         } else if (rad3.isChecked()) {
-                            listDADanh.add("C");
+                            listDADanh.set(i-1,"C");
                         } else if (rad4.isChecked()) {
-                            listDADanh.add("D");
+                            listDADanh.set(i-1,"D");
                         }
                         i++;
                         k += 4;
                         LoadCH(i, k);
                         radioGroup.clearCheck();
+                        if(10 >= (i+1)){
+                            loadDASau(i);
+                        }
+                        imgNext.setVisibility(View.VISIBLE);
+                        imgPrev.setVisibility(View.VISIBLE);
                     } else {
-                        imgNext.setEnabled(false);
+                        imgNext.setVisibility(View.INVISIBLE);
                     }
                 } else {
                     prei++;
@@ -92,12 +105,23 @@ public class LuyenThiReadingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!preview) {
                     if (i > 1) {
+                        if (rad1.isChecked()) {
+                            listDADanh.set((i-1),"A");
+                        } else if (rad2.isChecked()) {
+                            listDADanh.set((i-1),"B");
+                        } else if (rad3.isChecked()) {
+                            listDADanh.set((i-1),"C");
+                        } else if (rad4.isChecked()) {
+                            listDADanh.set((i-1),"D");
+                        }
                         i--;
                         k -= 4;
                         LoadCH(i, k);
                         loadDATruoc(i);
+                        imgPrev.setVisibility(View.VISIBLE);
+                        imgNext.setVisibility(View.VISIBLE);
                     } else {
-                        imgPrev.setEnabled(false);
+                        imgPrev.setVisibility(View.INVISIBLE);
                     }
                 } else {
 
@@ -120,16 +144,16 @@ public class LuyenThiReadingActivity extends AppCompatActivity {
 
         List<String> listDA = databaseDapAn.getDapAnReading();
         List<String> listCH = databaseDapAn.getNoiDungCauHoiReading();
-        socau = databaseDapAn.getCountCHReading() - 1;
+        socau = 10;
         databaseDapAn.close();
 
         textView.setText("Câu " + stt + "/" + socau);
         cauHoi.setText(listCH.get(stt - 1));
 
-        rad1.setText(listDA.get(thutuDA - 1));
-        rad2.setText(listDA.get(thutuDA));
-        rad3.setText(listDA.get(thutuDA + 1));
-        rad4.setText(listDA.get(thutuDA + 2));
+        rad1.setText("A."+listDA.get(thutuDA - 1));
+        rad2.setText("B."+listDA.get(thutuDA));
+        rad3.setText("C."+listDA.get(thutuDA + 1));
+        rad4.setText("D."+listDA.get(thutuDA + 2));
     }
 
     private void kiemTraDapAn() {
@@ -197,7 +221,8 @@ public class LuyenThiReadingActivity extends AppCompatActivity {
     }
 
     private void loadDASau(int cau) {
-        String dapAn = listDADanh.get(listDADanh.size() - 1);
+        String dapAn = listDADanh.get(cau);
+        Log.e("src",dapAn+" "+cau);
         switch (dapAn) {
             case "A":
                 rad1.setChecked(true);
